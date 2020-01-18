@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 
-public class usb_wrong
+public class MonkeStudent
 {
     public static void main(String[] args) {
 		try {
@@ -15,7 +15,7 @@ public class usb_wrong
             BufferedReader br = new BufferedReader(fr);
             
             // Path to the output file
-            PrintWriter w = new PrintWriter("usb_wrong.out.txt", "UTF-8");
+            PrintWriter w = new PrintWriter("MonkeStudent.out.txt", "UTF-8");
 
             // Gets number of test cases
             int T = Integer.parseInt(br.readLine());

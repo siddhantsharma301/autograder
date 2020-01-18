@@ -26,8 +26,3 @@ def run(file):
 
     # Execute compiled file
     subprocess.check_call(['java', name.split('\\')[-1]])
-
-
-if __name__ == "__main__":
-    file = "C:\\Users\\siddh\\Documents\\GitHub\\autograder\\java\\Tester.java"
-    run(file)

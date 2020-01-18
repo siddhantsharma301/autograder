@@ -4,14 +4,14 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class usb_correct {
+public class EpicStudent {
 	public static void main(String[] args) {
 		try {
 			File inFile = new File("C:\\Users\\siddh\\Documents\\GitHub\\autograder\\java\\test\\usb\\usb.in.txt");
 			FileReader fr = new FileReader(inFile);
             BufferedReader br = new BufferedReader(fr);
             
-            PrintWriter w = new PrintWriter("C:\\Users\\siddh\\Documents\\GitHub\\autograder\\java\\test\\usb\\usb_correct.out.txt", "UTF-8");
+            PrintWriter w = new PrintWriter("C:\\Users\\siddh\\Documents\\GitHub\\autograder\\java\\test\\usb\\EpicStudent.out.txt", "UTF-8");
 
             int T = Integer.parseInt(br.readLine());
 
