@@ -16,10 +16,14 @@ def parse_args():
     parser.add_argument("--dir", help = "Directory to look for files to run")
     parser.add_argument("--file", help = "File to run")
     parser.add_argument("--answer", required = True, help = "Answer file")
+    parser.add_argument("--name", help = "Name of the Problem")
     opt = parser.parse_args()
 
     if opt.dir is not None and opt.file is not None:
         raise ValueError("Both directory and file cannot be given, either one or the other")
+    
+    if opt.dir is not None and opt.name is None:
+        raise ValueError("Problem name must be given with directory flag using --name")
 
     return opt
 
@@ -35,7 +39,33 @@ def main(opt):
     Returns:
     """
     if opt.file is not None:
-        exec_file(opt.file, opt.answer)
+        print(exec_file(opt.file, opt.answer))
+
+    if opt.dir is not None:
+        exec_dir(opt.dir, opt.answer, opt.name)
+
+
+def exec_dir(dir, answer, out_filename):
+    """
+    Execute all files and grade outputs
+    Stores graded results in a `.graded.txt` file
+
+    Args:
+    * dir
+        Directory to look for and execute files
+    * answer
+        Answer key text file
+    * out_filename
+        Name of output file (problem name)
+
+    Returns:
+    """
+    files = sorted(glob.glob(dir + '\\*.java'))
+    out_file = open(dir + '\\' + out_filename + '.graded.txt', "w")
+    for file in files:
+        name = os.path.splitext(file)[0].split("\\")[-1]
+        out_file.write(name + ": " + exec_file(file, answer))
+    out_file.close()
 
 
 def exec_file(file, answer):
@@ -54,7 +84,7 @@ def exec_file(file, answer):
     runner.run(file)
     out = name + ".out.txt"
     diff = get_diff(out, answer)
-    print("\n" + str(diff) + "%")
+    return(str(diff) + "%\n")
 
 
 def get_diff(curr, answer):
