@@ -61,11 +61,21 @@ def exec_dir(dir, answer, out_filename):
 
     Returns:
     """
+    # Sort all Python files in given directory
     files = sorted(glob.glob(dir + '\\*.py'))
+
+    # Create output file
     out_file = open(dir + '\\' + out_filename + '.graded.txt', "w")
+
     for file in files:
+        # Get file name without extension or any path before it
+        # ex: C:\users\usr\test.py --> test
         name = os.path.splitext(file)[0].split("\\")[-1]
+
+        # Write output to file
         out_file.write(name + ": " + exec_file(file, answer))
+
+    # Close output file
     out_file.close()
 
 
@@ -81,10 +91,18 @@ def exec_file(file, answer):
     
     Returns:
     """
-    name = os.path.splitext(file)[0]
+    # Run the given file
     subprocess.check_call(['python', file])
+
+    # Get file name without extension to find 
+    # output file and to compare to answer
+    # ex: test.py --> find test.out.txt
+    name = os.path.splitext(file)[0]
     out = name + ".out.txt"
+
+    # Compare differences
     diff = get_diff(out, answer)
+
     return (str(diff) + "%\n")
 
 

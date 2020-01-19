@@ -60,11 +60,21 @@ def exec_dir(dir, answer, out_filename):
 
     Returns:
     """
+    # Sort all Java files in given directory
     files = sorted(glob.glob(dir + '\\*.java'))
+
+    # Create output file
     out_file = open(dir + '\\' + out_filename + '.graded.txt', "w")
+
     for file in files:
+        # Get file name without extension or any path before it
+        # ex: C:\users\usr\test.java --> test
         name = os.path.splitext(file)[0].split("\\")[-1]
+
+        # Write output to file
         out_file.write(name + ": " + exec_file(file, answer))
+
+    # Close output file
     out_file.close()
 
 
@@ -80,10 +90,18 @@ def exec_file(file, answer):
     
     Returns:
     """
-    name = os.path.splitext(file.split('\\')[-1])[0]
+    # Run the given file
     runner.run(file)
+
+    # Get file name without extension to find 
+    # output file and to compare to answer
+    # ex: test.java --> find test.out.txt
+    name = os.path.splitext(file.split('\\')[-1])[0]
     out = name + ".out.txt"
+
+    # Compare differences
     diff = get_diff(out, answer)
+
     return(str(diff) + "%\n")
 
 
