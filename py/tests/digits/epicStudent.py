@@ -1,6 +1,6 @@
 PATH = "C:\\Users\\siddh\\documents\\GitHub\\autograder\\py\\tests\\digits\\digits.in.txt"
 
-out_file = open("C:\\Users\\siddh\\documents\\GitHub\\autograder\\py\\tests\\digits\\digits.out.txt", "w")
+out_file = open("C:\\Users\\siddh\\documents\\GitHub\\autograder\\py\\tests\\digits\\epicStudent.out.txt", "w")
 f = open(PATH, "r")
 T = int(f.readline())
 
