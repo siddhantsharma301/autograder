@@ -4,6 +4,9 @@ import argparse
 import difflib
 import subprocess
 
+# Seperator for files, depending on Windows vs *nix systems
+sep = os.path.sep
+
 
 def parse_args():
     """
@@ -62,15 +65,15 @@ def exec_dir(dir, answer, out_filename):
     Returns:
     """
     # Sort all Python files in given directory
-    files = sorted(glob.glob(dir + '\\*.py'))
+    files = sorted(glob.glob(dir + sep + '*.py'))
 
     # Create output file
-    out_file = open(dir + '\\' + out_filename + '.graded.txt', "w")
+    out_file = open(dir + sep + out_filename + '.graded.txt', "w")
 
     for file in files:
         # Get file name without extension or any path before it
         # ex: C:\users\usr\test.py --> test
-        name = os.path.splitext(file)[0].split("\\")[-1]
+        name = os.path.splitext(file)[0].split(sep)[-1]
 
         # Write output to file
         out_file.write(name + ": " + exec_file(file, answer))

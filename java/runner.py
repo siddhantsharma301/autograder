@@ -1,6 +1,9 @@
 import os
 import subprocess
 
+# Seperator for files, depending on Windows vs *nix systems
+sep = os.path.sep
+
 JAVA_EXT = ".java"
 
 def run(file):
@@ -21,8 +24,8 @@ def run(file):
     subprocess.check_call(['javac', name + JAVA_EXT])
 
     # Change working directory bc java is wack and has some 
-    # weird rules for running `.class` files 🤡
+    # weird rules for running `.class` files :clown:
     os.chdir(os.path.dirname(os.path.realpath(file)))
 
     # Execute compiled file
-    subprocess.check_call(['java', name.split('\\')[-1]])
+    subprocess.check_call(['java', name.split(sep)[-1]])
