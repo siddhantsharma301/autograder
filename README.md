@@ -3,7 +3,7 @@ this makes life easier for automatically grading programs based on their outputs
 Siddhant Sharma, 2020
 
 ## Why?
-Mass grading files is painful. You have to compile (depending on the language), execute, compare the text files, blah blah blah. So I decided to make a tool that does it real quick.
+Mass grading files is painful. You have to compile (depending on the language), execute, compare the text files, blah blah blah. So I decided to make a tool that does it, quick and easy.
 
 ## So... What is it exactly?
 autograder is a language agnostic "grader". Give it a directory/file and an answer file, it'll execute the files and compare their outputs to the correct output. Then, it will print the similarity (if by file) or will store the output in a text file (if by directory).
